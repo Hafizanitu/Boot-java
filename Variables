@@ -1,0 +1,53 @@
+public class Main {
+    public static void main(String[] args) {
+        // Example 1: Primitive variables
+        int age = 25;
+        double salary = 50000.75;
+        char grade = 'A';
+        boolean isEmployed = true;
+
+        System.out.println("Primitive int: " + age); // Outputs 25
+        System.out.println("Primitive double: " + salary); // Outputs 50000.75
+        System.out.println("Primitive char: " + grade); // Outputs A
+        System.out.println("Primitive boolean: " + isEmployed); // Outputs true
+
+        // Example 2: Object reference variables
+        String name = "Alice";
+        Integer wrappedAge = 30;
+        System.out.println("Object String: " + name); // Outputs Alice
+        System.out.println("Object Integer: " + wrappedAge); // Outputs 30
+
+        // Example 3: Null reference
+        String nullStr = null;
+        try {
+            System.out.println(nullStr.length()); // Throws NullPointerException
+        } catch (NullPointerException e) {
+            System.out.println("Caught NullPointerException for null string");
+        }
+
+        // Example 4: Autoboxing and unboxing
+        //int primitiveInt = 50;
+        Integer autoBoxed = 100; // Autoboxing: int to Integer
+        int unboxed = autoBoxed; // Unboxing: Integer to int
+        System.out.println("Autoboxed: " + autoBoxed); // Outputs 100
+        System.out.println("Unboxed: " + unboxed); // Outputs 100
+
+        // Example 5: Default values
+        new Test().print();
+
+        // Example 6: Local variable initialization
+        int localInt;
+        // System.out.println(localInt); // Compilation error: not initialized
+        localInt = 0;
+        System.out.println("Initialized local int: " + localInt); // Outputs 0
+    }
+}
+
+class Test {
+    int instanceInt; // Defaults to 0
+    String instanceStr; // Defaults to null
+    void print() {
+        System.out.println("Default int: " + instanceInt); // Outputs 0
+        System.out.println("Default String: " + instanceStr); // Outputs null
+    }
+}
