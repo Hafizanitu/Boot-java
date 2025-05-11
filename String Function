@@ -1,0 +1,86 @@
+import java.util.Arrays;
+
+public class StringExample {
+    public static void main(String[] args) {
+        // Example 1: Basic String operations
+        String greeting = "Hello, Java!";
+        System.out.println("Length: " + greeting.length()); // Outputs 12
+        System.out.println("Char at 7: " + greeting.charAt(7)); // Outputs J
+        System.out.println("Substring: " + greeting.substring(0, 5)); // Outputs Hello
+        System.out.println("Concat: " + greeting.concat(" Welcome")); // Outputs Hello, Java! Welcome
+        System.out.println("Uppercase: " + greeting.toUpperCase()); // Outputs HELLO, JAVA!
+        System.out.println("Trim: " + "   Spaces   ".trim()); // Outputs Spaces
+
+        // Example 2: String searching and comparison
+        System.out.println("Index of 'Java': " + greeting.indexOf("Java")); // Outputs 7
+        System.out.println("Starts with 'Hello': " + greeting.startsWith("Hello")); // Outputs true
+        System.out.println("Equals ignore case: " + greeting.equalsIgnoreCase("hello, java!")); // Outputs true
+        System.out.println("Compare to 'Hello': " + greeting.compareTo("Hello")); // Outputs positive
+
+        // Example 3: String splitting and replacing
+        String csv = "Alice,Bob,Charlie";
+        String[] names = csv.split(",");
+        System.out.println("Split: " + Arrays.toString(names)); // Outputs [Alice, Bob, Charlie]
+        System.out.println("Replace: " + greeting.replace("Java", "World")); // Outputs Hello, World!
+        System.out.println("Regex replace: " + csv.replaceAll(",", ";")); // Outputs Alice;Bob;Charlie
+
+        // Example 4: StringBuilder for efficient concatenation
+        StringBuilder builder = new StringBuilder("Start");
+        builder.append(" Middle").append(" End");
+        builder.insert(5, ",");
+        builder.delete(6, 12);
+        builder.reverse();
+        System.out.println("StringBuilder: " + builder.toString()); // Outputs dra
+        System.out.println("Capacity: " + builder.capacity()); // Outputs 16 (initial) or higher
+
+        // Example 5: StringBuffer in multi-threaded context
+        StringBuffer buffer = new StringBuffer("Thread");
+        buffer.append(" Safe");
+        buffer.replace(6, 10, "Secure");
+        System.out.println("StringBuffer: " + buffer.toString()); // Outputs ThreadSecure
+
+        // Example 6: Real-world parsing
+        String log = "ERROR: Null input at 2023-10-01";
+        if (log.matches("ERROR:.*")) {
+            System.out.println("Error log detected");
+            String[] parts = log.split(": ");
+            System.out.println("Message: " + parts[1]); // Outputs Null input at 2023-10-01
+        }
+
+        // Example 7: Edge case - Null String
+        String nullStr = null;
+        try {
+            System.out.println(nullStr.length()); // Throws NullPointerException
+        } catch (NullPointerException e) {
+            System.out.println("Caught NullPointerException");
+        }
+
+        // Example 8: Edge case - Empty String
+        String empty = "";
+        System.out.println("Empty length: " + empty.length()); // Outputs 0
+        System.out.println("Is empty: " + empty.isEmpty()); // Outputs true
+
+        // Example 9: Edge case - Invalid index
+        try {
+            System.out.println(greeting.charAt(20)); // Throws StringIndexOutOfBoundsException
+        } catch (StringIndexOutOfBoundsException e) {
+            System.out.println("Caught StringIndexOutOfBoundsException");
+        }
+
+        // Example 10: Performance comparison
+        String concat = "";
+        StringBuilder builderConcat = new StringBuilder();
+        long start = System.currentTimeMillis();
+        for (int i = 0; i < 10000; i++) {
+            concat += "x";
+        }
+        long stringTime = System.currentTimeMillis() - start;
+        start = System.currentTimeMillis();
+        for (int i = 0; i < 10000; i++) {
+            builderConcat.append("x");
+        }
+        long builderTime = System.currentTimeMillis() - start;
+        System.out.println("String concat time: " + stringTime + "ms");
+        System.out.println("StringBuilder concat time: " + builderTime + "ms");
+    }
+}
