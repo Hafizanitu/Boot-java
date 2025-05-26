@@ -1,0 +1,177 @@
+//major collection types and methods
+
+import java.util.*;
+
+public class CollectionExample {
+    public static void main(String[] args) {
+        // Example 1: ArrayList
+        List<String> names = new ArrayList<>();
+        names.add("Alice");
+        names.add(0, "Bob");
+        names.set(1, "Charlie");
+        System.out.println("ArrayList: " + names); // Outputs [Bob, Charlie]
+        System.out.println("Contains Bob: " + names.contains("Bob")); // Outputs true
+        names.remove("Bob");
+        System.out.println("After remove: " + names); // Outputs [Charlie]
+        System.out.println("Sublist: " + names.subList(0, 1)); // Outputs [Charlie]
+
+        // Example 2: LinkedList
+        LinkedList<String> queue = new LinkedList<>();
+        queue.add("First");
+        queue.addFirst("Head");
+        queue.addLast("Tail");
+        System.out.println("LinkedList: " + queue); // Outputs [Head, First, Tail]
+        System.out.println("Poll: " + queue.poll()); // Outputs Head
+        System.out.println("After poll: " + queue); // Outputs [First, Tail]
+
+        // Example 3: HashSet
+        Set<Integer> numbers = new HashSet<>();
+        numbers.add(1);
+        numbers.add(1); // Ignored
+        numbers.add(null);
+        System.out.println("HashSet: " + numbers); // Outputs [null, 1]
+        numbers.remove(null);
+        System.out.println("After remove: " + numbers); // Outputs [1]
+
+        // Example 4: LinkedHashSet
+        Set<String> orderedSet = new LinkedHashSet<>();
+        orderedSet.add("Apple");
+        orderedSet.add("Banana");
+        System.out.println("LinkedHashSet: " + orderedSet); // Outputs [Apple, Banana]
+
+        // Example 5: TreeSet
+        Set<Integer> sortedSet = new TreeSet<>();
+        sortedSet.add(3);
+        sortedSet.add(1);
+        System.out.println("TreeSet: " + sortedSet); // Outputs [1, 3]
+
+        // Example 6: HashMap
+        Map<String, Integer> ages = new HashMap<>();
+        ages.put("Alice", 25);
+        ages.put("Bob", 30);
+        ages.putIfAbsent("Alice", 26);
+        System.out.println("HashMap: " + ages); // Outputs {Bob=30, Alice=25}
+        System.out.println("Keys: " + ages.keySet()); // Outputs [Bob, Alice]
+        System.out.println("Values: " + ages.values()); // Outputs [30, 25]
+        ages.compute("Bob", (k, v) -> v + 1);
+        System.out.println("Updated HashMap: " + ages); // Outputs {Bob=31, Alice=25}
+
+        // Example 7: LinkedHashMap
+        Map<String, String> orderedMap = new LinkedHashMap<>();
+        orderedMap.put("One", "1");
+        orderedMap.put("Two", "2");
+        System.out.println("LinkedHashMap: " + orderedMap); // Outputs {One=1, Two=2}
+
+        // Example 8: TreeMap
+        Map<Integer, String> sortedMap = new TreeMap<>();
+        sortedMap.put(2, "Two");
+        sortedMap.put(1, "One");
+        System.out.println("TreeMap: " + sortedMap); // Outputs {1=One, 2=Two}
+
+        // Example 9: Edge case - Concurrent modification
+        try {
+            for (String name : names) {
+                names.add("New");
+            }
+        } catch (ConcurrentModificationException e) {
+            System.out.println("Caught ConcurrentModificationException");
+        }
+
+        // Example 10: Edge case - Null in TreeSet
+        try {
+            sortedSet.add(null);
+        } catch (NullPointerException e) {
+            System.out.println("TreeSet does not allow null");
+        }
+    }
+}
+
+//Exception Handling
+
+public class ExceptionExample {
+    public static void main(String[] args) {
+        // Example 1: Basic try-catch
+        try {
+            int[] arr = {1, 2};
+            System.out.println(arr[5]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Invalid index: " + e.getMessage());
+        }
+
+        // Example 2: Multiple catch blocks
+        try {
+            String str = null;
+            System.out.println(str.length());
+        } catch (NullPointerException e) {
+            System.out.println("Null string");
+        } catch (Exception e) {
+            System.out.println("General error");
+        }
+
+        // Example 3: Finally
+        try {
+            int x = 10 / 0;
+        } catch (ArithmeticException e) {
+            System.out.println("Division by zero");
+        } finally {
+            System.out.println("Cleanup in finally");
+        }
+
+        // Example 4: Custom exception
+        try {
+            validateScore(-10);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        // Example 5: Try-with-resources
+        try (java.util.Scanner scanner = new java.util.Scanner(System.in)) {
+            System.out.println("Enter a number: ");
+            int num = scanner.nextInt();
+            System.out.println("Number: " + num);
+        } catch (Exception e) {
+            System.out.println("Input error");
+        }
+    }
+
+    static void validateScore(int score) {
+        if (score < 0 || score > 100) {
+            throw new IllegalArgumentException("Score must be between 0 and 100");
+        }
+    }
+}
+
+
+
+
+//Lambda Expressions
+
+import java.util.*;
+import java.util.function.Predicate;
+
+public class LambdaExample {
+    public static void main(String[] args) {
+        // Example 1: Sorting with lambda
+        List<String> names = Arrays.asList("Charlie", "Alice", "Bob");
+        Collections.sort(names, (a, b) -> a.compareTo(b));
+        System.out.println("Sorted: " + names); // Outputs [Alice, Bob, Charlie]
+
+        // Example 2: Stream with lambda
+        names.stream()
+                .filter(name -> name.length() > 3)
+                .forEach(System.out::println); // Outputs Alice, Charlie
+
+        // Example 3: Custom functional interface
+        interface Operation {
+            int compute(int a, int b);
+        }
+        Operation add = (a, b) -> a + b;
+        System.out.println("Add: " + add.compute(5, 3)); // Outputs 8
+
+        // Example 4: Edge case - Empty stream
+        List<String> empty = new ArrayList<>();
+        empty.stream()
+                .filter(name -> name.length() > 3)
+                .forEach(System.out::println); // No output
+    }
+}
