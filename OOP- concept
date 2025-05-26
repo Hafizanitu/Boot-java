@@ -1,0 +1,167 @@
+//abstract classes with inheritance and polymorphism
+
+package org.example;
+
+abstract class Shape {
+    protected String color;
+
+    Shape(String color) {
+        this.color = color;
+    }
+
+    abstract double area();
+
+    String getColor() {
+        return color;
+    }
+}
+
+class Circle extends Shape {
+    double radius;
+
+    Circle(String color, double radius) {
+        super(color);
+        this.radius = radius;
+    }
+
+    double area() {
+        return Math.PI * radius * radius;
+    }
+}
+
+class Rectangle extends Shape {
+    double width, height;
+
+    Rectangle(String color, double width, double height) {
+        super(color);
+        this.width = width;
+        this.height = height;
+    }
+
+    double area() {
+        return width * height;
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        // Example 1: Basic usage
+        Shape circle = new Circle("Red", 5);
+        Shape rectangle = new Rectangle("Blue", 4, 6);
+        System.out.println("Circle area: " + circle.area()); // Outputs ~78.54
+        System.out.println("Rectangle area: " + rectangle.area()); // Outputs 24
+
+        // Example 2: Polymorphic array
+        Shape[] shapes = {new Circle("Green", 3), new Rectangle("Yellow", 2, 5)};
+        for (Shape shape : shapes) {
+            System.out.println("Area: " + shape.area() + ", Color: " + shape.getColor());
+        }
+
+        // Example 3: Edge case - Abstract instantiation
+        // Shape s = new Shape("Black"); // Compilation error
+    }
+}
+
+
+//examples cover overriding, overloading, and interface-based polymorphism
+
+interface Printable {
+    void print();
+}
+
+class Book implements Printable {
+    String title;
+    Book(String title) { this.title = title; }
+    public void print() { System.out.println("Book: " + title); }
+}
+
+class Magazine implements Printable {
+    String name;
+    Magazine(String name) { this.name = name; }
+    public void print() { System.out.println("Magazine: " + name); }
+}
+
+public class PolymorphismExample {
+    // Overloading
+    static void describe(Book b) {
+        System.out.println("Describing book: " + b.title);
+    }
+
+    static void describe(Magazine m) {
+        System.out.println("Describing magazine: " + m.name);
+    }
+
+    public static void main(String[] args) {
+        // Example 1: Interface polymorphism
+        Printable book = new Book("Java Guide");
+        Printable magazine = new Magazine("Tech Weekly");
+        book.print(); // Outputs Book: Java Guide
+        magazine.print(); // Outputs Magazine: Tech Weekly
+
+        // Example 2: Overloading
+        describe((Book) book); // Outputs Describing book: Java Guide
+        describe((Magazine) magazine); // Outputs Describing magazine: Tech Weekly
+
+        // Example 3: Array of interfaces
+        Printable[] items = {new Book("Learn Java"), new Magazine("Code Monthly")};
+        for (Printable item : items) {
+            item.print();
+        }
+
+        // Example 4: Edge case - Invalid cast
+        try {
+            Magazine m = (Magazine) book;
+        } catch (ClassCastException e) {
+            System.out.println("Caught ClassCastException");
+        }
+    }
+}
+
+//encapsulation with validation and immutability
+
+public class Employee {
+    private String name;
+    private double salary;
+    private final int id;
+
+    public Employee(int id) {
+        this.id = id;
+    }
+
+    public String getName() { return name; }
+    public void setName(String name) {
+        if (name != null && !name.trim().isEmpty()) {
+            this.name = name;
+        }
+    }
+
+    public double getSalary() { return salary; }
+    public void setSalary(double salary) {
+        if (salary >= 0) {
+            this.salary = salary;
+        }
+    }
+
+    public int getId() { return id; }
+}
+
+class Main {
+    public static void main(String[] args) {
+        // Example 1: Basic encapsulation
+        Employee emp = new Employee(1001);
+        emp.setName("Alice");
+        emp.setSalary(75000);
+        System.out.println("Name: " + emp.getName()); // Outputs Alice
+        System.out.println("Salary: " + emp.getSalary()); // Outputs 75000
+        System.out.println("ID: " + emp.getId()); // Outputs 1001
+
+        // Example 2: Invalid input
+        emp.setSalary(-5000); // Ignored
+        System.out.println("Salary: " + emp.getSalary()); // Outputs 75000
+        emp.setName(""); // Ignored
+        System.out.println("Name: " + emp.getName()); // Outputs Alice
+
+        // Example 3: Immutable field
+        // emp.id = 1002; // Compilation error: id is final
+    }
+}
