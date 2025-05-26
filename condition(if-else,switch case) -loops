@@ -1,0 +1,211 @@
+public class IfExample {
+    public static void main(String[] args) {
+        // Example 1: Basic if
+        int score = 85;
+        if (score >= 60) {
+            System.out.println("Pass");
+        }
+
+        // Example 2: If/else
+        if (score >= 90) {
+            System.out.println("Grade: A");
+        } else if (score >= 80) {
+            System.out.println("Grade: B");
+        } else if (score >= 70) {
+            System.out.println("Grade: C");
+        } else {
+            System.out.println("Grade: F");
+        }
+
+        // Example 3: Nested if
+        boolean isStudent = true;
+        int age = 20;
+        if (isStudent) {
+            if (age < 25) {
+                System.out.println("Eligible for student discount");
+            } else {
+                System.out.println("Not eligible: too old");
+            }
+        } else {
+            System.out.println("Not a student");
+        }
+
+        // Example 4: Logical operators
+        boolean hasLicense = true;
+        if (age >= 16 && hasLicense) {
+            System.out.println("Can drive");
+        }
+
+        // Example 5: Ternary operator
+        String status = score >= 60 ? "Pass" : "Fail";
+        System.out.println("Status: " + status); // Outputs Pass
+
+        // Example 6: Edge case - Boundary condition
+        score = 60;
+        if (score == 60) {
+            System.out.println("Just passed");
+        }
+
+        // Example 7: Edge case - Null check
+        String input = null;
+        if (input != null && input.length() > 0) {
+            System.out.println("Valid input");
+        } else {
+            System.out.println("Invalid or null input");
+        }
+
+        // Example 8: Edge case - Short-circuiting
+        int x = 0;
+        if (x != 0 && (10 / x) > 2) {
+            System.out.println("Won't execute due to short-circuit");
+        } else {
+            System.out.println("Avoided division by zero");
+        }
+    }
+}
+
+// switch case example
+
+public class SwitchExample {
+    public static void main(String[] args) {
+        // Example 1: String switch
+        String day = "Wednesday";
+        switch (day) {
+            case "Monday":
+                System.out.println("Start of week");
+                break;
+            case "Friday":
+                System.out.println("End of work week");
+                break;
+            default:
+                System.out.println("Midweek or weekend");
+        }
+
+        // Example 2: Enum switch
+        enum Season { WINTER, SPRING, SUMMER, FALL }
+        Season season = Season.SUMMER;
+        switch (season) {
+            case WINTER:
+                System.out.println("Cold");
+                break;
+            case SUMMER:
+                System.out.println("Hot");
+                break;
+            default:
+                System.out.println("Moderate");
+        }
+
+        // Example 3: Switch expression (Java 14+)
+        String message = switch (day) {
+            case "Monday" -> "Start of week";
+            case "Friday" -> "End of work week";
+            default -> "Midweek or weekend";
+        };
+        System.out.println("Switch expression: " + message);
+
+        // Example 4: Fall-through
+        int level = 2;
+        switch (level) {
+            case 1:
+            case 2:
+                System.out.println("Beginner"); // Falls through
+            case 3:
+                System.out.println("Intermediate");
+                break;
+            default:
+                System.out.println("Advanced");
+        }
+
+        // Example 5: Edge case - Null input
+        day = null;
+        try {
+            switch (day) {
+                case "Monday":
+                    System.out.println("Won't execute");
+                    break;
+                default:
+                    System.out.println("Default");
+            }
+        } catch (NullPointerException e) {
+            System.out.println("Caught NullPointerException for null switch");
+        }
+
+        // Example 6: Edge case - Missing break
+        int score = 85;
+        switch (score / 10) {
+            case 10:
+            case 9:
+                System.out.println("A"); // Falls through
+            case 8:
+                System.out.println("B");
+                break;
+            default:
+                System.out.println("C or below");
+        }
+    }
+}
+
+
+// loop condition example
+
+public class LoopExample {
+    public static void main(String[] args) {
+        // Example 1: For loop
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("Number: " + i);
+        }
+
+        // Example 2: Enhanced for loop
+        String[] fruits = {"Apple", "Banana", "Orange"};
+        for (String fruit : fruits) {
+            System.out.println("Fruit: " + fruit);
+        }
+
+        // Example 3: While loop
+        int count = 0;
+        while (count < 3) {
+            System.out.println("Count: " + count++);
+        }
+
+        // Example 4: Do-while loop
+        count = 0;
+        do {
+            System.out.println("Do-while count: " + count++);
+        } while (count < 3);
+
+        // Example 5: Break
+        for (int i = 1; i <= 10; i++) {
+            if (i == 6) {
+                break;
+            }
+            System.out.println("With break: " + i);
+        }
+
+        // Example 6: Continue
+        for (int i = 1; i <= 5; i++) {
+            if (i % 2 == 0) {
+                continue;
+            }
+            System.out.println("Odd number: " + i);
+        }
+
+        // Example 7: Labeled break in nested loops
+        outer: for (int i = 1; i <= 3; i++) {
+            for (int j = 1; j <= 3; j++) {
+                if (i == 2 && j == 2) {
+                    break outer;
+                }
+                System.out.println("i=" + i + ", j=" + j);
+            }
+        }
+
+        // Example 8: Edge case - Infinite loop
+        count = 0;
+        while (true) {
+            if (count++ == 3) {
+                break;
+            }
+            System.out.println("Controlled infinite: " + count);
+        }
+    }
+}
