@@ -1,21 +1,22 @@
 //abstract classes with inheritance and polymorphism
 
 package org.example;
-
+// abstruct class
 abstract class Shape {
     protected String color;
 
     Shape(String color) {
         this.color = color;
     }
-
+// abstruct method- no body(implementation hide, only show functionality )
+                           ( not be static or final , under an abstruct class)//
     abstract double area();
-
+// Non abstruct method - with body
     String getColor() {
         return color;
     }
 }
-
+//abstruct class access by extends ,then we call abstruct method
 class Circle extends Shape {
     double radius;
 
@@ -64,11 +65,12 @@ class Main {
 
 
 //examples cover overriding, overloading, and interface-based polymorphism
-
+// interface is collection of abstruct methods(multi-ple inheitance)
 interface Printable {
+// compiler auto think public abstruct before void point
     void print();
 }
-
+//interface assces by implement-no object create
 class Book implements Printable {
     String title;
     Book(String title) { this.title = title; }
@@ -82,7 +84,7 @@ class Magazine implements Printable {
 }
 
 public class PolymorphismExample {
-    // Overloading
+    // Overloading -same method with different parameter(method signeture)
     static void describe(Book b) {
         System.out.println("Describing book: " + b.title);
     }
