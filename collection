@@ -10,9 +10,11 @@ public class CollectionExample {
         names.add(0, "Bob");
         names.set(1, "Charlie");
         System.out.println("ArrayList: " + names); // Outputs [Bob, Charlie]
+//contains- if the list present this name then print true otherwise false
         System.out.println("Contains Bob: " + names.contains("Bob")); // Outputs true
         names.remove("Bob");
         System.out.println("After remove: " + names); // Outputs [Charlie]
+//sublist-create the list
         System.out.println("Sublist: " + names.subList(0, 1)); // Outputs [Charlie]
 
         // Example 2: LinkedList
@@ -21,14 +23,15 @@ public class CollectionExample {
         queue.addFirst("Head");
         queue.addLast("Tail");
         System.out.println("LinkedList: " + queue); // Outputs [Head, First, Tail]
+        //poll() removes and returns the first element of the list
         System.out.println("Poll: " + queue.poll()); // Outputs Head
         System.out.println("After poll: " + queue); // Outputs [First, Tail]
 
         // Example 3: HashSet
         Set<Integer> numbers = new HashSet<>();
         numbers.add(1);
-        numbers.add(1); // Ignored
-        numbers.add(null);
+        numbers.add(1); // Ignored - store unique elements 
+        numbers.add(null);//any value store
         System.out.println("HashSet: " + numbers); // Outputs [null, 1]
         numbers.remove(null);
         System.out.println("After remove: " + numbers); // Outputs [1]
