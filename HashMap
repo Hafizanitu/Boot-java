@@ -1,0 +1,48 @@
+HashMap in java(unoder map like hashSet)
+
+...using (key,pair)
+package is import java.util.*;
+//{1,13}
+object as  HashMap<Integer,Integer> map = new HashMap<>();//map in empty
+insert value 
+..map.put(2, 3);
+map.put(5, 7);
+
+##insert new element if exist then update the value 
+
+check any key exist in map or not
+using search as
+ if(map.containsKey(key name){
+sout(its exist);
+else{
+not exist);
+}
+now get the key value if its exist in map
+map.get(keyname);
+
+Iteration in HashMap
+for(int i= 0; i<a; i++)
+//its read the index one after another and print the value of index as arr[i]
+same as another loop called for each loop
+for(datatype value: collection)//its works with value not read the index
+print(value);
+int arr[] = {1,3,4}
+for(int i=0; i<4; i++){
+sout(arr[i] +" ");
+
+for(int val : arr)
+sout(val +" ");
+
+for(Map.Entry<Integer, Integer> e: Map.enteySet())
+sout("[" +e.getKey() + ", " + e.getVlue() +"]");//[3,4]
+
+print only key using set 
+Set<String> keys = map.keySet(){
+for(String key : keys){
+sout(key +" " +get.(key));
+remove pair in map
+map.remove("pass key");
+sout(map);
+ node = 6
+N(size) = 4  //hashing-data for change
+
