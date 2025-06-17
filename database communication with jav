@@ -1,0 +1,119 @@
+//download database mysql JDBC drievr ->unzip-> = -> project structure ->libary -> add
+// craete an database on server
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.*;
+
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+public class Main {
+    public static void main(String[] args) {
+        String url = "jdbc:mysql://localhost:3306/employee_db";  //get url from database connector 
+        String userName = "root";
+        String password = "";
+        Connection connection = null;
+        Statement stmt = null;
+
+        try {
+            connection = DriverManager.getConnection(url,userName,password );
+            stmt = connection.createStatement();  // run the quray
+// for show all value from database
+            String sql = "select * from employee";   ///show all value from database into console in intelji
+            ResultSet sr = stmt.executeQuery(sql);  //show the output
+            while (sr.next()) { // interative loop print the next column
+                int age = Integer.parseInt(sr.getString("age"));
+                String name = sr.getString("name");
+                String position = sr.getString("position");
+                System.out.println(age + " " + name + " " + position);
+            }
+        }
+        catch (SQLException e) {
+            System.out.println("SQLException: " + e.getMessage());
+        }
+    }
+}
+
+// Java JDBC transaction code
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.sql.SQLException;
+
+public class UpdateEmployee {
+    public static void main(String[] args) {
+        String url = "jdbc:mysql://localhost:3306/employee_db"; //
+        String userName = "root";
+        String password = "";
+
+        Connection connection = null;
+        Statement statement = null;
+
+        try {
+            connection = DriverManager.getConnection(url, userName, password);
+            connection.setAutoCommit(false);
+            System.out.println("Connected");
+
+            statement = connection.createStatement();
+
+            try {
+                String sql = "UPDATE employee SET name='nitu' WHERE id=3";
+                statement.executeUpdate(sql);
+
+                String sql1 = "UPDATE employee SET name='nishu' WHERE id=3";
+                statement.executeUpdate(sql1);
+
+                connection.commit();
+                System.out.println("Transaction committed successfully.");
+            } catch (Exception e) {
+                connection.rollback();
+                System.out.println("Transaction rolled back due to error: " + e.getMessage());
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Database connection error: " + e.getMessage());
+        }
+        }
+    }
+
+//handles dynamic values 
+
+public class Main {
+    public static void main(String[] args) throws SQLException {
+
+        String url = "jdbc:mysql://localhost:3306/employee_db";
+        String userName = "root";
+        String password = "";
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection(url, userName, password);
+            connection.setAutoCommit(false);
+            String query = "update employee set name= 'first100' where id= ?";
+            String query2 = "update employee set name= ? where id= ?";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(query2);
+            preparedStatement.setString(1, "preparedStatement");
+            preparedStatement.setInt(2, 1);
+            preparedStatement.execute();
+            connection.commit();   //Save everything done since the last commit
+
+        } catch (SQLException e) {
+            connection.rollback();
+            System.out.println(e.getMessage());
+            System.out.println("Database not connected");
+        } finally {
+            connection.close();
+        }
+
+    }
+}
+
+
+
+
+
+
+
