@@ -110,6 +110,35 @@ public class PolymorphismExample {
             item.print();
         }
 
+//another example of
+GrandFather (interface)
+   ↓ implements
+Father (class)
+   ↓ extends
+Child01 (class)///
+
+interface GrandFather{
+    public void displayMoney();
+    default void unknwonAsset(){
+        System.out.println("House");
+    }
+}
+class Father implements GrandFather{
+
+    @Override
+    public void displayMoney() {
+        System.out.println("I have 1 Million $ as a father");
+    }
+    public void displayHoney(){
+        System.out.println("for kids 20%");
+    }
+}
+class Child01 extends Father{
+    public void displayFokir(){
+        System.out.println("I am fokir");
+    }
+}
+
         // Example 4: Edge case - Invalid cast
         try {
             Magazine m = (Magazine) book;
