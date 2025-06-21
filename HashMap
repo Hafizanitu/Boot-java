@@ -45,4 +45,43 @@ map.remove("pass key");
 sout(map);
  node = 6
 N(size) = 4  //hashing-data for change
+//HashMap in java
+public class HashMapExample {
+
+ public static void main(String[] args) {
+
+  HashMap hm = new HashMap();
+
+  // Adding pairs to HashMap
+  hm.put(101, "John");
+  hm.put(102, "Scott");
+  hm.put(103, "David");
+
+  // Printing pairs from HashMap
+  System.out.println(hm);
+
+  // Remove a pair from HashMap by using key
+  hm.remove(102);
+
+  System.out.println(hm);
+
+  // Retrive a single pair from HashMap using key value
+  System.out.println(hm.get(103));
+
+  // Reading Keys and values from HashMap
+  for (Map.Entry m : hm.entrySet()) {
+
+   System.out.println((m.getKey() + "  " + m.getValue()));
+  }
+ }
+}
+
+Output:
+{101=John, 102=Scott, 103=David}
+{101=John, 103=David}
+David
+101  John
+103  David
+
+
 
