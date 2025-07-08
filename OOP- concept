@@ -1,3 +1,4 @@
+****Abstraction-is a process of hiding implementation details and exposing only the functionality to the user.  
 //abstract classes with inheritance and polymorphism
 
 package org.example;
@@ -147,7 +148,7 @@ class Child01 extends Father{
         }
     }
 }
-
+*******Encapsulation is the process of wrapping code and data together into a single unit.Declare the setters and getters to set and get the variable values
 //encapsulation with validation and immutability
 
 public class Employee {
@@ -196,3 +197,7 @@ class Main {
         // emp.id = 1002; // Compilation error: id is final
     }
 }
+
+*****Inheritance is the process of one class inheriting properties and methods from another class in Java. Inheritance is used when we have is-a relationship between objects. 
+Inheritance in Java is implemented using extends keyword.
+
