@@ -1,3 +1,30 @@
+Classes and Objects
+Class contains attributes that store data and methods that define what the object can do. Classes are used to create objects of that class.
+Objects have attributes with specific values and can perform actions using the methods definded in the class.
+Encapsulation -in programming is like putting a lock around your data (like your treasures) to keep it safe.4 access modifiers-Public,private,protected,defult
+There is also the need of Getters and Setters, especially when we use the private modifier:
+Getters: think of it as a way to get a value
+Setters: it is a way to set or update a value
+Inheritance allows you to create relationships between classes.There are two ways: classes and interfaces
+1..class Animal {
+    // attributes and methods
+}
+
+class Dog extends Animal {
+    // attributes and methods specific to Dog
+}
+2..interface Flyable {
+    void fly();
+}
+
+class Bird implements Flyable {
+    public void fly() {
+        // implementation
+    }
+}
+
+
+
 ****Abstraction-is a process of hiding implementation details and exposing only the functionality to the user.  
 //abstract classes with inheritance and polymorphism
 
