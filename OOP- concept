@@ -6,6 +6,26 @@ There is also the need of Getters and Setters, especially when we use the privat
 Getters: think of it as a way to get a value
 Setters: it is a way to set or update a value
 Inheritance allows you to create relationships between classes.There are two ways: classes and interfaces
+1.. extends keyword to indicate class inheritance.
+class Animal {
+    
+}
+class Dog extends Animal {
+}
+2.interface Flyable {
+    void fly();
+}
+
+class Bird implements Flyable {
+    public void fly() {
+    }
+}    **** class is the superclass, which has common attributes and methods that both Car and Bicycle will inherit.menstion as supur(field).
+Polymorphism---There are two types: Method Overloading and Method Overriding
+1.Method Overloading allows you to define multiple methods with the same name in the same class
+2.Method Overriding occurs when a subclass provides a specific implementation for a method already defined in its superclass
+Abstraction---It is the process of hiding certain details and showing only essential information to the user.
+Use abstract classes also have abstract methods (without implementation) or interfaces.
+
 1..class Animal {
     // attributes and methods
 }
